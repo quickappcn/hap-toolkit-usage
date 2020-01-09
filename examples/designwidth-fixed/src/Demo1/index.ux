@@ -1,0 +1,153 @@
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="demo-page">
+    <div class="header">
+      <text class="title"><span>designWidth fixed(默认750)</span><a href="/Demo">点击查看示例二</a></text>
+      <text>大屏幕 电视 (≥1200dp) 显示四列</text>
+      <text>中屏幕（平板，大于等于 600dp 小于1200dp）显示三列</text>
+      <text>小屏幕（手机 大于等于300dp 小于600dp）显示两列</text>
+      <text>超小屏幕（手表 小于 300dp）显示一列</text>
+      <text>当前屏幕：windowWidth：{{deviceInfo.windowWidth}} windowHeight：{{deviceInfo.windowHeight}} </text>
+      <text>当前屏幕：screenWidth：{{deviceInfo.screenWidth}} screenWidth：{{deviceInfo.screenHeight}} screenDensity：{{deviceInfo.screenDensity}}</text>    </div>
+    <div class="content">
+      <div class="item-container">
+        <div for="listData" class="item">
+          <div class="top">
+            <text class="name">{{$item.name}}</text>
+          </div>
+          <div class="bottom">
+            <text>{{$item.text}}</text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import device from '@system.device'
+
+  export default {
+    private: {
+      listData: [
+        {
+          name: '第一个标题',
+          text: 'A 展现文本内容'
+        },      {
+          name: '第二个标题',
+          text: 'B 展现文本内容'
+        },      {
+          name: '第三个标题',
+          text: 'C 展现文本内容'
+        },      {
+          name: '第四个标题',
+          text: 'D 展现文本内容'
+        },      {
+          name: '第五个标题',
+          text: 'E 展现文本内容'
+        },      {
+          name: '第六个标题',
+          text: 'F 展现文本内容'
+        },      {
+          name: '第七个标题',
+          text: 'G 展现文本内容'
+        }
+      ],
+      deviceInfo: {
+        windowWidth: 0,
+        windowHeight: 0,
+        screenWidth: 0,
+        screenHeight: 0,
+        screenDensity: 0
+      }
+    },
+    onInit() {
+      const deviceInfo = this.deviceInfo
+      device.getInfo({
+        success(ret){
+          console.log(ret)
+          deviceInfo.windowWidth = ret.windowWidth
+          deviceInfo.windowHeight = ret.windowHeight
+          deviceInfo.screenWidth = ret.screenWidth
+          deviceInfo.screenHeight = ret.screenHeight
+          deviceInfo.screenDensity = ret.screenDensity
+        }
+      })
+    }
+  }
+</script>
+
+<style lang="less">
+  .demo-page {
+    flex-direction: column;
+  }
+
+  .content .item-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .content .item-container .item{
+    flex-direction: column;
+    background-color:#DDDDDD;
+    height: 200px;
+    border-width: 1px;
+    border-color: #FFFFFF;
+  }
+
+  @xs_ratio: 1;
+  @sm_ratio: 1/2;
+  @md_ratio: 1/3;
+  @lg_ratio: 1/4;
+
+  .demo-page(@ratio){
+    @list_item_width:750px;
+    @fontsize: 34px * @ratio + 5px;
+    @big_title_fontsize: 50px * @ratio + 10px;
+    @tile_fontsize: 44px * @ratio + 5px;
+
+    .demo-page a{
+      color: blue;
+      font-size: @fontsize;
+    }
+
+    text{
+      font-size: @fontsize;
+      padding: 4px;
+    }
+    .header {
+      height: 600px * @ratio;
+      flex-direction: column;
+    }
+    .header .title {
+      font-size: @big_title_fontsize;
+      height: 100px * @ratio;
+    }
+    .content .item-container .item{
+      width: @list_item_width * @ratio;
+    }
+    .content .item-container .item .name{
+      font-size: @tile_fontsize;
+    }
+  }
+
+  /*
+   * TODO: max-device-width min-device-width 改为 max-width min-width
+   * TODO: 添加单位dp
+   * 如：max-device-width:30 应改为 max-width:300dp
+   */
+  @media screen and (max-device-width:300){
+    .demo-page(@xs_ratio)
+  }
+
+  @media screen and (min-device-width:300){
+    .demo-page(@sm_ratio)
+  }
+  @media screen and (min-device-width:600) {
+    .demo-page(@md_ratio)
+  }
+
+  @media screen and (min-device-width:800) {
+    .demo-page(@lg_ratio)
+  }
+</style>
