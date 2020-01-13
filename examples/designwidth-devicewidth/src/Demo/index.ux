@@ -7,7 +7,8 @@
       <text>中屏幕（平板，大于等于 600dp 小于1200dp）显示三列</text>
       <text>小屏幕（手机 大于等于300dp 小于600dp）显示两列</text>
       <text>超小屏幕（手表 小于 300dp）显示一列</text>
-      <text>当前屏幕：windowWidth：{{deviceInfo.windowWidth}} screenDensity：{{deviceInfo.screenDensity}}</text>
+      <text>当前屏幕：windowWidth：{{deviceInfo.windowWidth}} screenDensity：{{deviceInfo.screenDensity}} windowHeight:
+        {{deviceInfo.windowHeight}}orientation: {{orientation}}</text>
     </div>
     <div class="content">
       <div class="item-container">
@@ -21,6 +22,53 @@
         </div>
       </div>
     </div>
+
+    <div class="item-container">
+      <text>or操作符</text>
+      <div class="or-show-container">
+        <text>
+          设置最大高度600dp和最小宽度600pd当前颜色均为 #f00f00
+        </text>
+      </div>
+    </div>
+
+    <!-- <div class="item-container">
+      <text>设备的分辨率</text>
+      <div class="or-show-container">
+        <text>
+          设置最大高度600dp和最小宽度600pd当前颜色均为 #f00f00
+        </text>
+      </div>
+    </div> -->
+
+    <div class="item-container">
+      <text>横屏颜色：red 竖屏颜色：yellow</text>
+      <div class="fs-box">
+        <text>当前的屏幕状态：{{orientation}}</text>
+      </div>
+    </div>
+
+    <div class="item-container">
+      <text>页面可视区域宽高比 3/5 - 2/3 颜色：#ff00ff 大于 2/3 颜色：#ff0000</text>
+      <div class="ratio-box">
+        <text>当前的宽高比： {{deviceInfo.windowWidth / deviceInfo.windowHeight}}</text>
+      </div>
+    </div>
+
+    <div class="item-container">
+      <div class="day-content">
+        <div class="day">Day (initial)</div>
+        <div class="day light-scheme">Day (changes in light scheme)</div>
+        <div class="day dark-scheme">Day (changes in dark scheme)</div>
+      </div>
+      
+      <div class="night-content">
+        <div class="night">Night (initial)</div>
+        <div class="night light-scheme">Night (changes in light scheme)</div>
+        <div class="night dark-scheme">Night (changes in dark scheme)</div>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -33,38 +81,42 @@
         {
           name: '第一个标题',
           text: 'A 展现文本内容'
-        },      {
+        }, {
           name: '第二个标题',
           text: 'B 展现文本内容'
-        },      {
+        }, {
           name: '第三个标题',
           text: 'C 展现文本内容'
-        },      {
+        }, {
           name: '第四个标题',
           text: 'D 展现文本内容'
-        },      {
+        }, {
           name: '第五个标题',
           text: 'E 展现文本内容'
-        },      {
+        }, {
           name: '第六个标题',
           text: 'F 展现文本内容'
-        },      {
+        }, {
           name: '第七个标题',
           text: 'G 展现文本内容'
         }
       ],
       deviceInfo: {
         windowWidth: 0,
-        screenDensity: 0
-      }
+        screenDensity: 0,
+        windowHeight: 0
+      },
+      orientation: null
     },
     onInit() {
       const deviceInfo = this.deviceInfo
+      this.orientation = this.$page.orientation
       device.getInfo({
-        success(ret){
+        success(ret) {
           console.log(ret)
           deviceInfo.windowWidth = ret.windowWidth
           deviceInfo.screenDensity = ret.screenDensity
+          deviceInfo.windowHeight = ret.windowHeight
         }
       })
     }
@@ -76,7 +128,7 @@
     flex-direction: column;
   }
 
-  .demo-page text{
+  .demo-page text {
     padding: 4px;
     font-size: 16px;
   }
@@ -85,25 +137,31 @@
     height: 200px;
     flex-direction: column;
   }
+
+  .item-container {
+    flex-direction: column;
+  }
+
   .header .title {
     font-size: 26px;
     height: 50px;
   }
-  .content .item-container{
+
+  .content .item-container {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .content .item-container .item{
+  .content .item-container .item {
     flex-direction: column;
-    background-color:#DDDDDD;
+    background-color: #DDDDDD;
     height: 200px;
     border-width: 1px;
     border-color: #FFFFFF;
 
   }
 
-  .content .item-container .item .name{
+  .content .item-container .item .name {
     font-size: 22px;
   }
 
@@ -112,26 +170,154 @@
    * TODO: 添加单位dp
    * 如：max-device-width:30 应改为 max-width:300dp
    */
-  @media screen and (max-device-width:300){
-    .content .item-container .item{
+
+  /* 使用min-width max-width 表达式 */
+  @media screen and (max-device-width:300) {
+    .content .item-container .item {
       width: 100%;
     }
   }
 
-  @media screen and (min-device-width:300){
-    .content .item-container .item{
+  @media screen and (min-device-width: 300) {
+    .content .item-container .item {
       width: 50%;
     }
   }
+
   @media screen and (min-device-width:600) {
-    .content .item-container .item{
+    .content .item-container .item {
       width: 33.33333%;
     }
   }
 
   @media screen and (min-device-width:800) {
-    .content .item-container .item{
+    .content .item-container .item {
       width: 25%;
+    }
+  }
+
+  /* 使用关系操作符号 > < >= <=  作用同上（使用min-width max-width 表达式）*/
+  /* @media screen and (width < 300) {
+    .content .item-container .item {
+      width: 100%;
+    }
+  }
+  @media screen and (width >= 300) and (width < 600) {
+    .content .item-container .item {
+      width: 50%;
+    }
+  }
+  @media screen and (width >= 600) and (width < 800) {
+    .content .item-container .item {
+      width: 33.33%;
+    }
+  }
+  @media screen and (width >= 800) {
+    .content .item-container .item {
+      width: 25%;
+    }
+  } */
+
+  /* or 操作符使用 */
+  @media screen (max-height: 600) or (min-width: 600) {
+    .or-show-container {
+      background-color: #f00f00
+    }
+  }
+
+  /* `,` 操作符同上 or 操作符相同*/
+  /* @media screen (max-height: 600), (min-width: 600){
+    .or-show-container  {
+      background-color: #f00f00
+    }
+  } */
+
+
+  /* 手机设备返回 dppx 分别为 2.75  3  设置 4以上 可以涵盖到*/
+  /* @media screen and (min-resolution: 3dppx) {
+    .title {
+      background-color: #cfcf00;
+    }
+  }
+
+  @media screen and (min-resolution: 4dppx) {
+    .title {
+      background-color: #f0cfdd;
+    }
+  } */
+
+  /* @media screen and (min-resolution: 200dpi) {
+    .title {
+      background-color: #cfcf00;
+    }
+  }
+  @media screen and (min-resolution: 400dpi) {
+    .title {
+      background-color: #f0cfdd;
+    }
+  } */
+
+  /* 当前页面横屏竖屏 */
+  @media screen and (orientation: portrait) {
+    .fs-box {
+      background-color: #ff0000;
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    .fs-box {
+      background-color: #ffff00;
+    }
+  }
+
+  /* min-aspect-ratio */
+  @media screen and (min-aspect-ratio: 3/5) {
+    .ratio-box {
+      background-color: #ff00ff;
+    }
+  }
+
+  @media screen and (min-aspect-ratio: 2/3) {
+    .ratio-box {
+      background-color: #ff0000;
+    }
+  }
+
+  .day {
+    width: 33.33%;
+    height: 100px;
+    background-color: #eeeeee;
+    color: black;
+  }
+
+  .night {
+    width: 33.33%;
+    height: 100px;
+    background-color: #333333;
+    color: white;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .day-content .dark-scheme {
+      background-color: #333333;
+      color: white;
+    }
+
+    .night-content .dark-scheme {
+      background-color: black;
+      color: #ddd;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    .day-content .light-scheme {
+      background-color: white;
+      color: #555;
+    }
+
+    .night-content .light-scheme {
+      background-color: #eeeeee;
+      color: black;
     }
   }
 </style>
