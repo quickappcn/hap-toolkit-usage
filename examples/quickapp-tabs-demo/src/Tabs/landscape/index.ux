@@ -1,0 +1,70 @@
+<import name="comp-tabs" src="../components/comp-tabs/index.ux"></import>
+
+<template>
+  <div class="tabs-page-demo tabs-margin-left">
+    <div class="flex-column">
+      <div class="page-header">
+        <a href="/Tabs/portrait">切换到竖屏</a>
+      </div>
+
+      <div class="page-body tabs-margin-bottom">
+        <list>
+          <list-item class="list-item-sku" for="{{ skuList }}">
+            <text>{{ $item.name }}</text>
+          </list-item>
+        </list>
+      </div>
+
+      <!-- 页签的自定义组件 -->
+      <comp-tabs></comp-tabs>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    private: {
+      skuList: []
+    },
+    onReady () {
+      // 生成列表内容
+      let loop = 0
+      while(loop < 30) {
+        this.skuList.push({ name: `skuItem-${loop}` })
+        loop++
+      }
+    }
+  }
+</script>
+
+<style>
+  @import "../components/comp-tabs/index.css";
+
+  .tabs-page-demo {
+    flex-direction: column;
+  }
+
+  .flex-column {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .page-header {
+    background-color: #c7ddef;
+    justify-content: center;
+    height: 100px;
+  }
+
+  .page-body {
+    background-color: #EEECED;
+    justify-content: center;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  .list-item-sku {
+    justify-content: center;
+    height: 80px;
+    border-bottom: 1px solid #c3c3c3;
+  }
+</style>

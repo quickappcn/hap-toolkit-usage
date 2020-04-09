@@ -1,0 +1,66 @@
+
+/* 页签的通用定义 */
+.page-tabs {
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #6FC3DF;
+}
+
+.tabs-item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabs-item .tabs-item-icon {
+    width: 36px;
+}
+
+.tabs-item .tabs-item-name {
+}
+
+/* 页签在竖屏时的定义 */
+@media(orientation: portrait) {
+    .page-tabs-auto {
+        flex-direction: row;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .page-tabs {
+        height: 120px;
+    }
+
+    .tabs-item {
+        width: 20%;
+    }
+
+    /* 距离底部的页签 */
+    .tabs-margin-bottom {
+        margin-bottom: 125px;
+    }
+}
+
+/* 页签在横屏时的定义 */
+@media(orientation: landscape) {
+    .page-tabs-auto {
+        flex-direction: column;
+        height: 100%;
+        position: fixed;
+        left: 0;
+    }
+
+    .page-tabs {
+        width: 100px;
+    }
+
+    .tabs-item {
+        height: 20%;
+    }
+
+    /* 距离左侧的页签 */
+    .tabs-margin-left {
+        margin-left: 102px;
+    }
+}
