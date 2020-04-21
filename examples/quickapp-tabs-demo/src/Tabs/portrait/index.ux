@@ -8,7 +8,7 @@
       </div>
 
       <div class="page-body tabs-margin-bottom">
-        <list>
+        <list class="body-content-list">
           <list-item class="list-item-sku" for="{{ skuList }}">
             <text>{{ $item.name }}</text>
           </list-item>
