@@ -1,0 +1,32 @@
+{
+  "name": "demo5",
+  "version": "1.0.0",
+  "subversion": {
+    "toolkit": "0.6.13"
+  },
+  "description": "",
+  "scripts": {
+    "build": "hap build",
+    "release": "hap release",
+    "server": "hap server",
+    "lint": "eslint --ext .js,.ux src",
+    "watch": "hap watch"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-hybrid": "0.0.5",
+    "hap-toolkit": "^0.6.15"
+  },
+  "dependencies": {
+    "eslint-loader": "^4.0.0",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "md5": "^2.2.1",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2"
+  },
+  "browserslist": [
+    "chrome 65"
+  ]
+}

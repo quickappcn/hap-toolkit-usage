@@ -1,0 +1,39 @@
+{
+    "package": "com.application.demo",
+    "name": "media-query",
+    "versionName": "1.7.0",
+    "versionCode": "7",
+    "minPlatformVersion": "1070",
+    "icon": "/Common/logo.png",
+    "features": [
+        { "name": "system.prompt" },
+        { "name": "system.router" },
+        { "name": "system.shortcut" },
+        { "name": "system.fetch" }
+    ],
+    "permissions": [
+        { "origin": "*" }
+    ],
+    "config": {
+        "logLevel": "log"
+    },
+    "router": {
+        "entry": "mediaQuery",
+        "pages": {
+            "mediaQuery": {
+                "component": "index"
+            }
+        }
+    },
+    "display": {
+        "titleBarBackgroundColor": "#f2f2f2",
+        "titleBarTextColor": "#414141",
+        "titleBar": true,
+        "menu": true,
+        "pages": {
+            "mediaQuery": {
+                "titleBarText": "媒体查询"
+            }
+        }
+    }
+}

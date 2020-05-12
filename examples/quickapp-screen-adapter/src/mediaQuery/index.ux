@@ -1,0 +1,227 @@
+<template>
+    <div class="doc-page">
+      <div class="page-title-wrap">
+        <text class="page-title">{{componentName}}</text>
+      </div>
+      <div class="item-container">
+        <text class="txt">屏幕密度DPR：{{screenDensity}}</text>
+        <text class="txt">可视区域宽度(物理分辨率)：{{screenWidth}}</text>
+        <text class="txt">可视区域高度(物理分辨率)：{{screenHeight}}</text>
+        <text class="txt">可视区域宽度(dp单位)：{{width}}</text>
+        <text class="txt">可视区域高度(dp单位)：{{height}}</text>
+        <text class="txt">设备dpi值：{{dpi}}</text>
+        <text class="txt">屏幕方向：{{orientation}}</text>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">初始盒子</text>
+        <text class="txt">背景色:黑色   字体颜色:白色</text>
+        <div class="container box">
+          <text class="text">快应用服务框架</text>
+        </div>
+      </div>
+    
+      <div class="item-container">
+        <text class="txt">满足(width<=400)的查询条件</text>
+        <text class="txt">背景色:粉色</text>
+        <div class="container box1">
+          <text class="text text1">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足(max-height: 700)的查询条件</text>
+        <text class="txt">背景色:红色</text>
+        <div class="container box2">
+          <text class="text text2">快应用服务框架</text>
+        </div>
+      </div>
+    
+      <div class="item-container">
+        <text class="txt">满足(min-resolution: 400dpi)的查询条件</text>
+        <text class="txt">背景色:橘色  字体:50px</text>
+        <div class="container box3">
+          <text class="text text3">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足(orientation: landscape)的查询条件</text>
+        <text class="txt">背景色:黄色   字体颜色:绿色</text>
+        <div class="container box4">
+          <text class="text text4">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足((min-aspect-ratio:390/675) and (max-aspect-ratio:700/360))的查询条件</text>
+        <text class="txt">背景色:蓝色</text>
+        <div class="container box5">
+          <text class="text text5">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足(only screen and (prefers-color-scheme: dark))的查询条件</text>
+        <text class="txt">背景色:白色   字体颜色:黑色</text>
+        <div class="container box6">
+          <text class="text text6">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足(only screen and (prefers-color-scheme: dark) and (orientation: landscape))的查询条件</text>
+        <text class="txt">背景色:白色   字体颜色:黑色   边框:灰色</text>
+        <div class="container box7">
+          <text class="text text7">快应用服务框架</text>
+        </div>
+      </div>
+
+      <div class="item-container">
+        <text class="txt">满足((prefers-color-scheme: dark) , (orientation: landscape))的查询条件</text>
+        <text class="txt">背景色:紫色   宽度:500px   高度:300px  字体:40px</text>
+        <div class="container box8">
+          <text class="text text8">快应用服务框架</text>
+        </div>
+      </div>
+    </div>
+</template>
+<script>
+    import device from '@system.device'
+    export default {
+        private:{
+            componentName:'媒体查询',
+            screenDensity:'',
+            orientation:'',
+            screenWidth:'',
+            screenHeight:'',
+            width:'',
+            height:'',
+            dpi:''
+        },
+        onShow(){
+            this.orientation = this.$page.orientation;
+            let _this = this;
+            device.getInfo({
+                success: function(ret) {
+                    let { windowWidth = 0, windowHeight = 0, screenDensity = 0 } = ret;
+                    console.log(`像素密度（同样也是dppx的值）: ${screenDensity}`);
+                    console.log(`可视区域宽度（物理分辨率）: ${windowWidth}`);
+                    console.log(`可视区域高度（物理分辨率）: ${windowHeight}`);
+                    console.log(`可视区域宽度（dp单位）: ${windowWidth / screenDensity}`);
+                    console.log(`可视区域高度（dp单位）: ${windowHeight / screenDensity}`);
+                    console.log(`设备dpi值: ${screenDensity * 160}`);
+
+                    _this.screenDensity = ret.screenDensity;
+                    _this.screenWidth = ret.windowWidth;
+                    _this.screenHeight = ret.windowHeight;
+                    _this.width = (ret.windowWidth) / screenDensity;
+                    _this.height = (ret.windowHeight) / screenDensity;
+                    _this.dpi = ret.screenDensity * 160;
+                }
+            })
+        }
+    }
+</script>
+<style>
+    @import '../Common/css/common.css';
+    .txt, .description {
+        width:90%;
+        align-items:center;
+        font-size:30px;
+        color:#000;
+        margin:5px 0;
+        text-align:left;
+    }
+    .description {
+        line-height:50px;
+    }
+    .span {
+        font-weight:bold;
+        color:red;
+    }
+    .text {
+        padding-left:30px;
+    }
+    .item-container {
+        align-items:center;
+        margin:20px 0;
+    }
+    .container {
+        width:500px;
+        height:100px;
+        background-color:#000;
+    }
+    text{
+        color: #fff;
+    }
+    .box {
+        background-color: black;
+    }
+
+    @media (width<= 400) {
+        .box1 {
+            background-color: pink;
+        }
+    }
+
+    @media (max-height: 700) {
+        .box2 {
+            background-color: red;
+        }
+    }
+
+    @media (min-resolution: 400dpi) {
+        .box3 {
+            background-color:orange;
+        }
+        .text3 {
+            font-size:50px;
+        }
+    }
+
+    @media (orientation: landscape) {
+        .box4 {
+            background-color: yellow;
+        }
+        .text4 {
+            color: green;
+        }
+    }
+
+    @media (min-aspect-ratio:360/700) and (max-aspect-ratio:700/360) {
+        .box5 {
+            background-color: blue;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .box6 {
+            background-color: white;
+        }
+        .text6 {
+            color: #000;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) and (orientation: landscape) {
+        .box7 {
+            background-color: white;
+            border:2px solid #ccc;
+        }
+        .text7 {
+            color: #000;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) , (orientation: landscape) {
+        .box8 {
+            width: 500px;
+            height:300px;
+            background-color:purple;
+        }
+        .text8 {
+            font-size:40px;
+        }
+    }
+</style>
