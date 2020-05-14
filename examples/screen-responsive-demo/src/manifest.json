@@ -1,0 +1,41 @@
+{
+  "package": "com.application.demo",
+  "name": "screen-responsive-demo",
+  "versionName": "1.0.0",
+  "versionCode": "1",
+  "minPlatformVersion": "1020",
+  "icon": "/Common/logo.png",
+  "features": [
+    { "name": "system.prompt" },
+    { "name": "system.router" },
+    { "name": "system.shortcut" },
+    { "name": "system.fetch" }
+  ],
+  "permissions": [
+    { "origin": "*" }
+  ],
+  "config": {
+    "designWidth": "device-width",
+    "logLevel": "log"
+  },
+  "router": {
+    "entry": "Pages/index",
+    "pages": {
+      "Pages/index": {
+        "component": "index"
+      }
+    }
+  },
+  "display": {
+    "titleBarBackgroundColor": "#f2f2f2",
+    "titleBarTextColor": "#414141",
+    "titleBar": false,
+    "menu": true,
+    "orientation": "landscape",
+    "pages": {
+      "Pages/index": {
+        "titleBarText": "首页"
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<import name="comp-info" src="../components/comp-info/index.ux"></import>
+
+<template>
+  <div class="tabs-page-demo tabs-margin-left">
+    <div class="flex-column" onlongpress="toggoleDeviceInfoPanel">
+      <div class="page-header" if="showDeviceInfo">
+        <comp-info></comp-info>
+      </div>
+
+      <div class="page-body tabs-margin-bottom">
+        <list class="body-content-list">
+          <list-item class="list-item-sku" for="{{ skuList }}">
+            <div class="list-item-sku-item">
+              <image class="product-imgshape" src="{{$item.imgurl}}"></image>
+              <text class="product-title">{{ $item.title }}</text>
+              <text class="product-subtitle">{{ $item.subtitle }}</text>
+            </div>
+          </list-item>
+        </list>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import device from '@system.device'
+
+export default {
+  private: {
+    // 是否显示设备信息
+    showDeviceInfo: true,
+    // 商品列表
+    skuList: [
+    ]
+  },
+  onReady () {
+    // 生成列表内容
+    let loop = 0
+    while(loop < 20) {
+      this.skuList.push({
+        title: '超级飞侠',
+        subtitle: '看超级飞侠，什么都不怕',
+        imgurl: '/Common/imgs/products/1589364749722.jpg'
+      })
+      loop++
+    }
+
+  },
+  toggoleDeviceInfoPanel () {
+    this.showDeviceInfo = !this.showDeviceInfo
+  }
+}
+</script>
+
+<style lang="less">
+  @import "./index.less";
+</style>
