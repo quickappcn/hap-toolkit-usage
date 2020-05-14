@@ -1,81 +1,16 @@
 
-.body-content-list {
-  flex-direction: row;
-  border: 1px solid #c3c3c3;
+text {
+  font-size: 18px;
+}
 
-  .list-item-sku {
-    margin: 10px;
-    padding: 10px;
-    background-color: rgba(199, 221, 239, 0.3);;
+.page-raster-root {
 
+  .section-body {
+    flex-direction: column;
 
-    .list-item-sku-item {
-      flex-direction: column;
-      width: 100%;
-
-      .product-imgshape {
-      }
-
-      .product-title {
-        font-size: 18px;
-      }
-
-      .product-subtitle {
-        font-size: 14px;
-        color: #c3c3c3;
-      }
+    .col-cell {
+      background-color: #1f95ff;
     }
   }
 }
 
-/* 针对小屏幕的适配 */
-@media (max-height: 600) {
-  .body-content-list {
-    columns: 1;
-
-    .list-item-sku {
-      width: 240px;
-
-      .list-item-sku-item {
-
-        .product-imgshape {
-        }
-
-        .product-title {
-          font-size: 18px;
-        }
-
-        .product-subtitle {
-          font-size: 14px;
-        }
-      }
-    }
-  }
-}
-
-/* 针对中等屏幕的适配 */
-@media (min-height: 600dp) {
-  .body-content-list {
-    columns: 2;
-
-    .list-item-sku {
-      margin: 30px;
-      padding: 30px;
-      width: 320px;
-
-      .list-item-sku-item {
-
-        .product-imgshape {
-        }
-
-        .product-title {
-          font-size: 24px;
-        }
-
-        .product-subtitle {
-          font-size: 18px;
-        }
-      }
-    }
-  }
-}
