@@ -23,6 +23,9 @@
     "pages": {
       "Pages/index": {
         "component": "index"
+      },
+      "Pages/raster": {
+        "component": "index"
       }
     }
   },
@@ -35,6 +38,10 @@
     "pages": {
       "Pages/index": {
         "titleBarText": "首页"
+      },
+      "Pages/raster": {
+        "component": "index",
+        "orientation": "portrait"
       }
     }
   }
