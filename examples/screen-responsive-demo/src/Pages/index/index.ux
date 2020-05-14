@@ -1,13 +1,13 @@
 <import name="comp-info" src="../components/comp-info/index.ux"></import>
 
 <template>
-  <div class="tabs-page-demo tabs-margin-left">
+  <div class="page-index-root">
     <div class="flex-column" onlongpress="toggoleDeviceInfoPanel">
       <div class="page-header" if="showDeviceInfo">
         <comp-info></comp-info>
       </div>
 
-      <div class="page-body tabs-margin-bottom">
+      <div class="page-body">
         <list class="body-content-list">
           <list-item class="list-item-sku" for="{{ skuList }}">
             <div class="list-item-sku-item">

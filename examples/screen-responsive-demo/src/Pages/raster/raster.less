@@ -1,0 +1,53 @@
+/* 栅格化定义 */
+
+@container: qui-container;
+
+@columns-name: qui-col;
+@columns-pading: 15px;
+@grid-count: 12;
+
+.columns-base-css() {
+  position: relative;
+  min-height: 1px;
+  padding-right: @columns-pading;
+  padding-left: @columns-pading;
+}
+
+.make-grid-columns(@len: @grid-count) {
+  .col(@i) {
+    @classList: ~".@{columns-name}-xs-@{i},.@{columns-name}-sm-@{i},.@{columns-name}-md-@{i},.@{columns-name}-lg-@{i}";
+    .col(@i + 1, ~"@{classList}");
+  }
+  .col(@i, @list) when (@i =< @len){
+    @classList: ~".@{columns-name}-xs-@{i},.@{columns-name}-sm-@{i},.@{columns-name}-md-@{i},.@{columns-name}-lg-@{i}";
+    .col(@i + 1, ~"@{classList},@{list}");
+  }
+  .col(@i, @list) when (@i > @len) {
+    @{list} {
+      .columns-base-css();
+    }
+  }
+  .col(1)
+}
+.make-grid-columns(@grid-count);
+
+
+.make-columns-loop(@type, @n, @i: 1) when (@i <= @n){
+  @col-class-name: ~"@{columns-name}-@{type}";
+  .@{col-class-name}-@{i}{
+    width: @i/@n*100%;
+  }
+  .@{col-class-name}-offset-@{i}{
+    margin-left: @i/@n*100%;
+  }
+  .make-columns-loop(@type, @n, (@i + 1));
+}
+.make-columns-loop(xs, @grid-count);
+.make-columns-loop(sm, @grid-count);
+.make-columns-loop(md, @grid-count);
+.make-columns-loop(lg, @grid-count);
+
+.qui-row {
+  width: 100%;
+  margin: 10px 8px;
+}
