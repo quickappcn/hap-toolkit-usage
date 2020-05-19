@@ -1,0 +1,84 @@
+<import name="comp-info" src="../components/comp-info/index.ux"></import>
+<import name="comp-tabs" src="../components/comp-tabs/index.ux"></import>
+
+<template>
+  <div class="tabs-page-demo tabs-margin-left">
+    <div class="flex-column">
+      <div class="page-header">
+        <a href="/Tabs/landscape">切换到横屏</a>
+      </div>
+
+      <div class="page-shoulder">
+        <comp-info></comp-info>
+      </div>
+
+      <div class="page-body tabs-margin-bottom">
+        <list class="body-content-list">
+          <list-item class="list-item-sku" for="{{ skuList }}">
+            <div class="list-item-sku-item">
+              <image class="product-imgshape" src="{{$item.imgurl}}"></image>
+              <text class="product-title">{{ $item.title }}</text>
+              <text class="product-subtitle">{{ $item.subtitle }}</text>
+            </div>
+          </list-item>
+        </list>
+      </div>
+
+      <!-- 页签的自定义组件 -->
+      <comp-tabs></comp-tabs>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  private: {
+    skuList: []
+  },
+  onReady () {
+    // 生成列表内容
+    let loop = 0
+    while(loop < 20) {
+      this.skuList.push({
+        title: '超级飞侠',
+        subtitle: '看超级飞侠，什么都不怕',
+        imgurl: '/Common/imgs/products/1589364749722.jpg'
+      })
+      loop++
+    }
+  }
+}
+</script>
+
+<style lang="less">
+
+  @import "../components/comp-tabs/index.css";
+  @import "../components/comp-list/index.less";
+
+  .tabs-page-demo {
+    flex-direction: column;
+  }
+
+  .flex-column {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .page-header {
+    background-color: #c7ddef;
+    justify-content: center;
+    height: 100px;
+  }
+
+  .page-shoulder {
+    background-color: #1f7199;
+    justify-content: center;
+  }
+
+  .page-body {
+    background-color: #EEECED;
+    justify-content: center;
+    height: 100%;
+    flex-grow: 1;
+  }
+</style>

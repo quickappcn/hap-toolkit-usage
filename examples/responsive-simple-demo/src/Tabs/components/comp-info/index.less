@@ -1,0 +1,39 @@
+
+.page-device-panel {
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+
+  text {
+    font-size: 32px;
+  }
+
+  .info-label {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  .info-value {
+
+  }
+}
+
+/* 在竖屏时的定义 */
+@media(orientation: portrait) {
+  .page-device-panel {
+    .info-row {
+      .info-label {
+        margin-left: 30px;
+      }
+
+      .info-value {
+        margin-left: 30px;
+      }
+    }
+  }
+}
+
+/* 在横屏时的定义 */
+@media(orientation: landscape) {
+}
+

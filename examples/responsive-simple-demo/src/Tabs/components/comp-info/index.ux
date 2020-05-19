@@ -1,0 +1,78 @@
+<template>
+  <div class="page-device-panel" show="{{boolShowPanel}}" onclick="toggleVisibility()">
+    <div class="info-row">
+      <text class="info-label">设备信息：</text>
+      <text class="info-value">{{deviceInfo.manufacturer}}, {{deviceInfo.brand}}, {{deviceInfo.model}}</text>
+    </div>
+
+    <div class="info-row">
+      <text class="info-label">屏幕分辨率：</text>
+      <text class="info-value">{{deviceInfo.screenWidth}} x {{deviceInfo.screenHeight}}</text>
+    </div>
+
+    <div class="info-row">
+      <text class="info-label">屏幕密度：</text>
+      <text class="info-value">{{deviceInfo.screenDensity}}</text>
+    </div>
+
+    <div class="info-row">
+      <text class="info-label">应用的宽度DP值：</text>
+      <text class="info-value">{{Math.floor(deviceInfo.windowWidth / deviceInfo.screenDensity)}}</text>
+    </div>
+
+    <div class="info-row">
+      <text class="info-label">应用的高度DP值：</text>
+      <text class="info-value">{{Math.floor(deviceInfo.windowHeight / deviceInfo.screenDensity)}}</text>
+    </div>
+  </div>
+</template>
+
+<script>
+import prompt from '@system.prompt'
+import device from '@system.device'
+
+export default {
+  data: {
+    boolShowPanel: true,
+    deviceInfo: {}
+  },
+  toggleVisibility () {
+    this.boolShowPanel = !this.boolShowPanel
+  },
+  onReady () {
+    const self = this
+
+    // 获取设备信息
+    device.getInfo({
+      success (data) {
+        self.deviceInfo = data
+
+        const {
+          screenDensity,
+          screenWidth,
+          screenHeight,
+          windowWidth,
+          windowHeight
+        } = data
+
+        console.info(`设备的基本信息：${data.manufacturer}, ${data.brand}, ${data.model}`)
+
+        console.info(`设备的屏幕密度DPR：${screenDensity}`)
+        console.info(`设备的屏幕分辨率的宽度：${screenWidth}`, screenHeight)
+        console.info(`应用的实际渲染窗口的宽度：${screenWidth}`, windowHeight)
+
+        const screenWidthInDP = screenWidth / screenDensity
+        console.info(`设备的屏幕宽度DP值：${screenWidthInDP}`, screenHeight / screenDensity)
+
+        const windowWidthInDP = windowWidth / screenDensity
+        console.info(`应用的实际渲染宽度DP值：${windowWidthInDP}`, windowHeight / screenDensity)
+      }
+    })
+  }
+}
+</script>
+
+<style lang="less">
+  @import "./index.less";
+</style>
+
