@@ -1,6 +1,6 @@
 {
   "package": "com.application.demo",
-  "name": "quickapp-tabs-demo",
+  "name": "responsive-simple-demo",
   "versionName": "1.0.0",
   "versionCode": "1",
   "minPlatformVersion": "1020",
@@ -15,6 +15,7 @@
     { "origin": "*" }
   ],
   "config": {
+    "designWidth": "device-width",
     "logLevel": "log"
   },
   "router": {

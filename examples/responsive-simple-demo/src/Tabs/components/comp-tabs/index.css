@@ -2,7 +2,7 @@
 /* 页签的通用定义 */
 .page-tabs {
     justify-content: space-around;
-    padding: 10px;
+    padding: 5px;
     background-color: #6FC3DF;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .tabs-item .tabs-item-icon {
-    width: 36px;
+    width: 24px;
 }
 
 .tabs-item .tabs-item-name {
@@ -29,16 +29,20 @@
     }
 
     .page-tabs {
-        height: 120px;
+        height: 60px;
     }
 
     .tabs-item {
         width: 20%;
     }
 
+    .tabs-item-name {
+        font-size: 18px;
+    }
+
     /* 距离底部的页签 */
     .tabs-margin-bottom {
-        margin-bottom: 125px;
+        margin-bottom: 55px;
     }
 }
 
@@ -52,15 +56,19 @@
     }
 
     .page-tabs {
-        width: 100px;
+        width: 60px;
     }
 
     .tabs-item {
         height: 20%;
     }
 
+    .tabs-item-name {
+        font-size: 18px;
+    }
+
     /* 距离左侧的页签 */
     .tabs-margin-left {
-        margin-left: 102px;
+        margin-left: 62px;
     }
 }
