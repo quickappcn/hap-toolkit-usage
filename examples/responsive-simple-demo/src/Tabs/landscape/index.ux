@@ -55,6 +55,10 @@
   @import "../components/comp-tabs/index.css";
   @import "../components/comp-list/index.less";
 
+  text, span, a {
+    font-size: 18px;
+  }
+
   .tabs-page-demo {
     flex-direction: column;
   }
@@ -67,7 +71,7 @@
   .page-header {
     background-color: #c7ddef;
     justify-content: center;
-    height: 100px;
+    height: 50px;
   }
 
   .page-shoulder {
