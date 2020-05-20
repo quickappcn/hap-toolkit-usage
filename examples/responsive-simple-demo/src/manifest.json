@@ -15,7 +15,7 @@
     { "origin": "*" }
   ],
   "config": {
-    "designWidth": "device-width",
+    "designWidth": 750,
     "logLevel": "log"
   },
   "router": {

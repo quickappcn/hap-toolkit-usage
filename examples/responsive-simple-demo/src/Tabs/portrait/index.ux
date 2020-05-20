@@ -56,7 +56,7 @@ export default {
   @import "../components/comp-list/index.less";
 
   text, span, a {
-    font-size: 18px;
+    font-size: 18dp;
   }
 
   .tabs-page-demo {
@@ -71,7 +71,7 @@ export default {
   .page-header {
     background-color: #c7ddef;
     justify-content: center;
-    height: 50px;
+    height: 50dp;
   }
 
   .page-shoulder {
