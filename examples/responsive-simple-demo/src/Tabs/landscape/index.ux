@@ -2,40 +2,62 @@
 <import name="comp-tabs" src="../components/comp-tabs/index.ux"></import>
 
 <template>
-  <div class="tabs-page-demo tabs-margin-left">
+  <div class="tabs-page-demo {{mode == 'vertical' ? 'tabs-margin-left' : ''}}">
     <div class="flex-column">
       <div class="page-header">
-        <a href="/Tabs/portrait">切换到竖屏</a>
+        <a href="/Tabs/portrait">切换到竖屏{{this.shoulderHeight + 400 * 2 + 80 + 80}}</a>
       </div>
 
-      <div class="page-shoulder">
+      <div class="page-shoulder" onresize="getShoulderRect">
         <comp-info></comp-info>
       </div>
 
       <div class="page-body tabs-margin-bottom">
-        <list class="body-content-list">
-          <list-item class="list-item-sku" for="{{ skuList }}">
+        <list class="body-content-list" style="columns: {{columns}}; flex-direction: {{direction}}">
+          <list-item style="{{styleObj}}" class="list-item-sku" for="{{ skuList }}">
             <div class="list-item-sku-item">
               <image class="product-imgshape" src="{{$item.imgurl}}"></image>
               <text class="product-title">{{ $item.title }}</text>
-              <text class="product-subtitle">{{ $item.subtitle }}</text>
+              <text class="product-subtitle" lines="1" text-overflow="ellipsis">{{ $item.subtitle }}</text>
             </div>
           </list-item>
         </list>
       </div>
 
       <!-- 页签的自定义组件 -->
-      <comp-tabs></comp-tabs>
+      <comp-tabs mode={{mode}}></comp-tabs>
     </div>
   </div>
 </template>
 
 <script>
+  import device from '@system.device'
+
   export default {
     private: {
-      skuList: []
+      skuList: [],
+      windowWidthInDP: 0,
+      windowHeightInDP: 0,
+      shoulderHeight: 0,
+      isReady: false
+    },
+    computed: {
+      direction () {
+        return this.windowHeightInDP > this.shoulderHeight + 300 * 2 ? 'column' : 'row'
+      },
+      columns () {
+        return this.direction === 'row' ? 1 : Math.floor(this.windowWidthInDP / 300)
+      },
+      styleObj () {
+        return !this.isReady ? '' : this.direction === 'row' ? {width: '300dp', height: '100%'} : ''
+      },
+      mode () {
+        return !this.isReady || !this.shoulderHeight ? 'vertical' : this.direction == 'column' && this.windowHeightInDP > this.shoulderHeight + 400 * 2 + 80 ? 'horizontal' : 'vertical'
+      }
     },
     onReady () {
+      let self = this
+      this.getScreenInfo()
       // 生成列表内容
       let loop = 0
       while(loop < 20) {
@@ -46,6 +68,29 @@
         })
         loop++
       }
+    },
+    getScreenInfo () {
+      let self = this
+      // 获取设备信息
+      device.getInfo({
+        success (data) {
+          const {
+            screenDensity,
+            screenWidth,
+            screenHeight,
+            windowWidth,
+            windowHeight
+          } = data
+          const windowWidthInDP = windowWidth / screenDensity
+          const windowHeightInDP = windowHeight / screenDensity
+          self.windowWidthInDP = windowWidthInDP
+          self.windowHeightInDP = windowHeightInDP
+        }
+      })
+    },
+    getShoulderRect(event) {
+      this.shoulderHeight = event.offsetHeight
+      this.isReady = true
     }
   }
 </script>

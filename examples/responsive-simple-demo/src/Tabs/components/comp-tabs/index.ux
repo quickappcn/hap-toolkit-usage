@@ -1,21 +1,21 @@
 <template>
-  <div class="page-tabs page-tabs-auto">
-    <div class="tabs-item tabs-item-1" onclick="showTabClickTip('首页')">
+  <div class="{{mode == 'horizontal' ? 'page-tabs-bottom page-tabs-auto-bottom' : ''}} page-tabs page-tabs-auto ">
+    <div class="tabs-item tabs-item-1 {{mode == 'horizontal' ? 'tabs-item-bottom' : ''}}" onclick="showTabClickTip('首页')">
       <image class="tabs-item-icon" src="/Common/tabicon/icon-home-gray@3x.png"></image>
       <text class="tabs-item-name">首页</text>
     </div>
 
-    <div class="tabs-item tabs-item-2" onclick="showTabClickTip('分类')">
+    <div class="tabs-item tabs-item-2 {{mode == 'horizontal' ? 'tabs-item-bottom' : ''}}" onclick="showTabClickTip('分类')">
       <image class="tabs-item-icon" src="/Common/tabicon/icon-newcar-gray@3x.png"></image>
       <text class="tabs-item-name">分类</text>
     </div>
 
-    <div class="tabs-item tabs-item-3" onclick="showTabClickTip('探索')">
+    <div class="tabs-item tabs-item-3 {{mode == 'horizontal' ? 'tabs-item-bottom' : ''}}" onclick="showTabClickTip('探索')">
       <image class="tabs-item-icon" src="/Common/tabicon/icon-discover-gray@3x.png"></image>
       <text class="tabs-item-name">探索</text>
     </div>
 
-    <div class="tabs-item tabs-item-4" onclick="showTabClickTip('我的')">
+    <div class="tabs-item tabs-item-4 {{mode == 'horizontal' ? 'tabs-item-bottom' : ''}}" onclick="showTabClickTip('我的')">
       <image class="tabs-item-icon" src="/Common/tabicon/icon-me-gray@3x.png"></image>
       <text class="tabs-item-name">我的</text>
     </div>
@@ -31,6 +31,11 @@ import prompt from '@system.prompt'
  * "orientation": "landscape",
  */
 export default {
+  props: {
+    mode: {
+      default: 'horizontal'
+    }
+  },
   showTabClickTip (tabName) {
     prompt.showToast({
       message: `您点击了页签：${tabName}`

@@ -13,7 +13,7 @@
 }
 
 .tabs-item .tabs-item-icon {
-    width: 24dp;
+    width: 18dp;
 }
 
 .tabs-item .tabs-item-name {
@@ -54,21 +54,35 @@
         position: fixed;
         left: 0;
     }
+    .page-tabs-auto-bottom {
+        flex-direction: row;
+        height: 80dp;
+        bottom: 0;
+    }
 
     .page-tabs {
-        width: 60dp;
+        width: 80dp;
+    }
+    .page-tabs-bottom {
+        width: 100%;
     }
 
     .tabs-item {
         height: 20%;
     }
 
+    .tabs-item-bottom { 
+        width: 20%;
+        height: 100%;
+    }
+
+
     .tabs-item-name {
-        font-size: 18dp;
+        font-size: 30dp;
     }
 
     /* 距离左侧的页签 */
     .tabs-margin-left {
-        margin-left: 62dp;
+        margin-left: 82dp;
     }
 }
