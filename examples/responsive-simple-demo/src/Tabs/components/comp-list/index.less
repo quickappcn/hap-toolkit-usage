@@ -1,6 +1,6 @@
 
 .body-content-list {
-  margin: 5dp;
+  margin: 5dp;  
 
   .list-item-sku {
     justify-content: center;
@@ -8,7 +8,7 @@
 
     .list-item-sku-item {
       flex-direction: column;
-      width: 100%;
+      width: 300dp;
 
       text {
       }
@@ -46,25 +46,27 @@
 /* 在横屏时的定义 */
 @media(orientation: landscape) {
   .body-content-list {
-    flex-direction: row;
-
+    padding-bottom: 80dp;
     .list-item-sku {
-      height: 100%;
-
+      display: flex;
+      margin: 5dp;
+      align-items: center;
+      justify-content: center;
       .list-item-sku-item {
-
+        width: 300dp;
         .product-imgshape {
-          height: 80%;
+          width: 100%;
         }
         .product-title {
-          font-size: 18dp;
+          font-size: 30dp;
           font-weight: bold;
         }
         .product-subtitle {
-          font-size: 16dp;
+          font-size: 28dp;
           color: #c3c3c3;
         }
       }
     }
   }
 }
+
