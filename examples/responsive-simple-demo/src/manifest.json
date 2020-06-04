@@ -9,7 +9,8 @@
     { "name": "system.prompt" },
     { "name": "system.router" },
     { "name": "system.shortcut" },
-    { "name": "system.fetch" }
+    { "name": "system.fetch" },
+    { "name": "service.vui" }
   ],
   "permissions": [
     { "origin": "*" }
