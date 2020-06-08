@@ -2,12 +2,72 @@
   /**
    * @file 应用级别的配置，供所有页面公用
    */
+  import vui from '@service.vui'
 
   import './global'
   import util from './util'
 
   export default {
     showMenu: util.showMenu,
-    createShortcut: util.createShortcut
+    createShortcut: util.createShortcut,
+    async onCreate() {
+      this.initVui()
+        .then(() => {
+          return this.openMic()
+        })
+        .then(() => {
+          this.onNlpResult()
+        })
+    },
+    initVui () {
+      return new Promise((resolve, reject) => {
+        vui.initialize({
+          success: function(){
+            console.log(`### 内置语音接口 ### 初始化成功`)
+            resolve()
+          },
+          fail: function(err){
+            console.log(`### 内置语音接口 ### 初始化失败：`, err)
+            reject(err)
+          }
+        })
+      })
+    },
+    openMic () {
+      return new Promise((resolve, reject) => {
+        vui.openMic({
+          success: function(){
+            resolve()
+          },
+          fail: function(err){
+            reject(err)
+          }
+        })
+      })
+    },
+    onNlpResult () {
+      vui.onNlpResult = function (response) {
+        const { instructions } = response
+        console.log('onNlpResult', instructions)
+
+        instructions.forEach(instructionItem => {
+
+          if (instructionItem.type === vui.INSTRUCTION_TYPE.ELEMENT) {
+            // 识别结果为：UI事件操作
+
+            // 触发UI事件操作，如：某个页面中某个元素的点击事件
+            vui.dispatchEvent(instructionItem)    
+          }
+          else if (instructionItem.type === vui.INSTRUCTION_TYPE.INTENT) {
+            // 识别结果为：之前注册的意图命令
+
+            // 开发者根据识别出来的意图结果，完成对应的业务响应；如："CART_OPEN"
+            const { name } = instructionItem
+            // ... switch case ...
+          }
+        })
+        
+      }
+    }
   }
 </script>

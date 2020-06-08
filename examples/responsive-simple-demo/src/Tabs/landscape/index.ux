@@ -15,7 +15,7 @@
       <div class="page-body tabs-margin-bottom">
         <list class="body-content-list" style="columns: {{columns}}; flex-direction: {{direction}}">
           <list-item style="{{styleObj}}" class="list-item-sku" for="{{ skuList }}">
-            <div class="list-item-sku-item">
+            <div class="list-item-sku-item" onclick="showDetail($item)" vtags="{{$item.title}}">
               <image class="product-imgshape" src="{{$item.img}}"></image>
               <text class="product-title" lines="1" text-overflow="ellipsis">{{$item.title}}</text>
               <text class="product-subtitle" lines="1" text-overflow="ellipsis">{{$item.desc}}</text>
@@ -87,6 +87,11 @@
     getShoulderRect(event) {
       this.shoulderHeight = event.offsetHeight
       this.isReady = true
+    },
+    showDetail(item) {
+      prompt.showToast({
+        message: `您点击了页签：${item.title}`
+      })
     }
   }
 </script>

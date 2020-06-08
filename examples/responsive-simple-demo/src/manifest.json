@@ -9,7 +9,10 @@
     { "name": "system.prompt" },
     { "name": "system.router" },
     { "name": "system.shortcut" },
-    { "name": "system.fetch" }
+    { "name": "system.fetch" },
+    { "name": "hap.io.MessageChannel" },
+    { "name": "service.vuisupport" },
+    { "name": "service.vui" }
   ],
   "permissions": [
     { "origin": "*" }
