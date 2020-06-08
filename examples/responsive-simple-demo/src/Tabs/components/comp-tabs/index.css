@@ -61,7 +61,7 @@
     }
 
     .page-tabs {
-        width: 80dp;
+        width: 80;
     }
     .page-tabs-bottom {
         width: 100%;
@@ -83,6 +83,6 @@
 
     /* 距离左侧的页签 */
     .tabs-margin-left {
-        margin-left: 82dp;
+        margin-left: 80;
     }
 }
