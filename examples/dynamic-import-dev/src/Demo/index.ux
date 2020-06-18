@@ -1,58 +1,27 @@
-<import src="./part" name="part"></import>
-<!-- <import src="./part2" name="part2"></import> -->
 <template>
   <!-- template里只能有一个根节点 -->
   <div class="demo-page">
-    <Part id="part2"></Part>
     <text class="title">{{time}}</text>
-    <!-- 点击跳转详情页 -->
-    <input class="btn" type="button" value="查看时间" onclick="generateTime" />
-    <component is="{{ comp }}"></component>
-    <!-- <part3></part3> -->
+    <input class="btn" type="button" value="点击引入动态JS修改时间" onclick="dynamicImportJs" />
   </div>
 </template>
 
 <script>
-import router from '@system.router'
-
 export default {
   // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
   private: {
-    time: new Date().toLocaleString(),
-    comp: 'part'
+    time: new Date().toLocaleString()
   },
-  routeDetail () {
-    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
-    router.push ({
-      uri: '/DemoDetail'
+  dynamicImportJs() {
+    if (this._loaded) {
+      this.time = this.timerGenerator()
+      return
+    }
+    import('./timer').then(res => {
+      this.timerGenerator = res.default
+      this._loaded = true
+      this.time = this.timerGenerator()
     })
-  },
-  onReady() {
-    console.log(this)
-    console.log(this.$element('part2'))
-  },
-  async generateTime() {
-    // if (this._loaded) {
-    //   this.time = this.timerGenerator()
-    //   return
-    // }
-    // require.ensure(['./b.js'], require => {
-    //   const a = require('./timer')
-    //   this.timerGenerator = a.default
-    //   this._loaded = true
-    //   this.time = this.timerGenerator()
-    // })
-    // import('./timer').then(res => {
-    //   this.timerGenerator = res.default
-    //   this._loaded = true
-    //   this.time = this.timerGenerator()
-    // })
-    // const a = await import('./part2.ux')
-    const b = await import('./part2.ux')
-    console.log(1111)
-    this.comp = this.comp === 'part2' ? 'part' : 'part2'
-    // console.log(a)
-    console.log(b.default)
   }
 }
 </script>
