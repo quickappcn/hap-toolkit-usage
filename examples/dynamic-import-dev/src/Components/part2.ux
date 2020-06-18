@@ -1,0 +1,20 @@
+<template>
+    <div id="part2">
+      <text class="a">{{ 22 }}</text>
+    </div>
+  </template>
+  <script>
+    export default {
+      data() {
+        return {}
+      },
+      onReady() {
+        console.log(1)
+      }
+    }
+  </script>
+  <style>
+    .a {
+      color: blueviolet;
+    }
+  </style>

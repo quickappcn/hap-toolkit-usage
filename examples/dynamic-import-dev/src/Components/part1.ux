@@ -1,0 +1,11 @@
+<template>
+    <div id="part1">
+      <text class="a">{{ 1 }}</text>
+    </div>
+  </template>
+  
+  <style>
+    .a {
+      color: blueviolet;
+    }
+  </style>
