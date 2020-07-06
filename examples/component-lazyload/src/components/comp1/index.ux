@@ -1,0 +1,37 @@
+<template>
+  <div class="comp1-root">
+    <div class="comp1-row">
+      <text>组件名称：{{name}}</text>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      name: 'comp1'
+    }
+  }
+}
+</script>
+
+<style>
+  .comp1-row {
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+    border: 1px solid #c3c3c3;
+  }
+
+  .comp1-row text {
+    text-align: center;
+  }
+
+  .comp1-root {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

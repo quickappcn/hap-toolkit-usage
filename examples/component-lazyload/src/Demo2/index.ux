@@ -1,0 +1,40 @@
+<import name="comp1" src="../components/comp1/index.ux"></import>
+<import name="comp2" src="../components/comp2/index.ux"></import>
+
+<template>
+  <div class="demo-page">
+    <div class="demo-row">
+      <text>页面：{{title}}</text>
+    </div>
+
+    <comp1></comp1>
+    <comp2></comp2>
+  </div>
+</template>
+
+<script>
+  export default {
+    private: {
+      title: '示例页面2'
+    }
+  }
+</script>
+
+<style>
+  .demo-page {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .demo-row {
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 10px 0;
+    border: 1px solid #c3c3c3;
+  }
+
+  .demo-row text {
+    text-align: center;
+  }
+
+</style>
