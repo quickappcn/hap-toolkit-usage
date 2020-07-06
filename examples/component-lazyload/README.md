@@ -1,13 +1,13 @@
-## 快速上手
+## 项目介绍
 
-您可通过运行 `npm run start` 后，使用快应用引擎扫描二维码快速开发。
+本项目介绍了开发者使用两个参数来减小构建包的体积，请参考项目文件下的`quickapp.config.js`文件；
 
-## 了解更多
+- `enableLazyComponent` 自定义组件的懒加载
 
-你可以通过我们的[官方文档](https://doc.quickapp.cn/)熟悉和了解快应用。
+该能力将使得自定义组件的初始化工作发生在自定义组件实例化时，而不是默认的页面刚开始加载之时；
 
-可以通过我们[快应用官方示例项目](https://github.com/quickappcn/sample)，快速掌握
-api 和组件的用法
+- `splitChunksMode` 使用模块化能力
 
-对我们有什么意见，建议或者 bug，可以在这里反馈
-https://github.com/quickappcn/issues
+该能力将使得页面之间公共用到的资源（如：JS模块、自定义组件）仅在构建时保留1份，减小构建包的体积；
+
+
