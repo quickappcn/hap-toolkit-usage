@@ -1,0 +1,28 @@
+<template>
+  <div class="detail-page">
+    <image class="img" src="{{img}}"></image>
+    <text>{{desc}}</text>
+  </div>
+</template>
+
+<script>
+  export default {
+    public: {
+      img: "",
+      desc: ""
+    }
+  }
+</script>
+
+<style>
+  .detail-page {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .detail-page .img {
+    width: 300dp;
+    height: 300dp;
+  }
+</style>

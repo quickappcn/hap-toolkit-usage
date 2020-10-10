@@ -9,7 +9,8 @@
     { "name": "system.prompt" },
     { "name": "system.router" },
     { "name": "system.shortcut" },
-    { "name": "system.fetch" }
+    { "name": "system.fetch" },
+    { "name": "service.vui" }
   ],
   "permissions": [
     { "origin": "*" }
@@ -26,6 +27,9 @@
       },
       "Tabs/landscape": {
         "component": "index"
+      },
+      "Tabs/landscape/detail": {
+        "component": "index"
       }
     }
   },
@@ -41,6 +45,10 @@
       },
       "Tabs/landscape": {
         "titleBarText": "Tabs页签横竖屏适配示例",
+        "orientation": "landscape"
+      },
+      "Tabs/landscape/detail": {
+        "titleBarText": "Tabs页签横竖屏适配示例详情页",
         "orientation": "landscape"
       }
     }
